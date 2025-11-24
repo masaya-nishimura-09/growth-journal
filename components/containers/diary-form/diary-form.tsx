@@ -1,3 +1,6 @@
+// todo: その日の感情を選んで記録（自己分析やネガティブ管理に利用）
+// todo: 感情の変化をグラフ化
+
 "use client";
 
 import { createDiary } from "@/actions/diaries-actions";
@@ -54,9 +57,11 @@ export function DiaryForm({ data }: { data?: Diary }) {
           振り返りの時間。今日の出来事と学びを記録し、明日への糧にしましょう。
         </CardDescription>
         <CardAction>
-          <Button>
-            <Link href={getDateStr()}>今日の日記</Link>
-          </Button>
+          {diary.date !== getDateStr() && (
+            <Button>
+              <Link href={getDateStr()}>今日の日記</Link>
+            </Button>
+          )}
         </CardAction>
       </CardHeader>
       <CardContent className="scrollable">

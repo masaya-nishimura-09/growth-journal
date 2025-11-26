@@ -1,7 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { fetchHabits } from "@/actions/habits-actions";
 import HabitsTable from "@/components/containers/habits/habits-table";
 import NewHabits from "@/components/containers/habits/new-habits";
 import {
@@ -15,21 +13,11 @@ import {
 import useHabitsTable from "@/hooks/use-habits-table";
 import type { Habits } from "@/types/habits";
 
-export default function BadHabits() {
-  const [baddHabits, setBadHabits] = useState<Habits[]>([]);
-  const { table } = useHabitsTable(baddHabits);
-
-  useEffect(() => {
-    async function loadGoodHabits() {
-      const data = await fetchHabits("bad");
-      setBadHabits(data);
-    }
-
-    loadGoodHabits();
-  }, []);
+export default function BadHabits({ data }: { data: Habits[] }) {
+  const { table } = useHabitsTable(data);
 
   return (
-    <Card className="h-full w-full">
+    <Card className="size-full">
       <CardHeader>
         <CardTitle>辞めたい習慣</CardTitle>
         <CardDescription></CardDescription>

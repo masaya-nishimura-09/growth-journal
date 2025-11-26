@@ -1,28 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { fetchDiaries } from "@/actions/diaries-actions";
+import { useState } from "react";
 import DiaryArchiveSearchDialog from "@/components/containers/diary-archive/diary-archive-search-dialog";
 import DiaryArchiveTable from "@/components/containers/diary-archive/diary-archive-table";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { useDiaryArchiveTable } from "@/hooks/use-diary-archive-table";
-import { getDateOneMonthAgo, getDateStr } from "@/lib/date/date";
 import { Diary } from "@/types/diaries";
 
-export function DiaryArchive() {
-  const [diaries, setDiaries] = useState<Diary[]>([]);
+export function DiaryArchive({ data }: { data: Diary[] }) {
+  const [diaries, setDiaries] = useState<Diary[]>(data);
   const { table } = useDiaryArchiveTable(diaries);
-
-  useEffect(() => {
-    async function loadDiaries() {
-      const today = getDateStr();
-      const oneMonthAgo = getDateOneMonthAgo();
-      const data = await fetchDiaries(oneMonthAgo, today);
-      setDiaries(data);
-    }
-
-    loadDiaries();
-  }, []);
 
   return (
     <Card>

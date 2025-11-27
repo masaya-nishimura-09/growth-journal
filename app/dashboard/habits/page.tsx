@@ -1,8 +1,8 @@
+import type { Metadata } from "next";
 import { fetchHabits } from "@/actions/habits-actions";
 import BadHabits from "@/components/containers/habits/bad-habits/bad-habits";
 import GoodHabits from "@/components/containers/habits/good-habits/good-habits";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "習慣",

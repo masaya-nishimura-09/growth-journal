@@ -2,7 +2,6 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { NegativeNotesFormData } from "@/types/negative-notes";
 import { useState } from "react";
 import InputDesiredState from "./input-fields/input-desired-state";
@@ -32,37 +31,23 @@ export default function NewNegativeNotes() {
       <CardHeader>
         <CardTitle>ネガティブノートを作成</CardTitle>
       </CardHeader>
-      <CardContent>
-        <form className="flex flex-col gap-6">
-          <Tabs defaultValue="emotion" className="w-[400px]">
-            <TabsList>
-              <TabsTrigger value="emotion">感情</TabsTrigger>
-              <TabsTrigger value="event">出来事</TabsTrigger>
-              <TabsTrigger value="negativeThoughts">ネガティブワード</TabsTrigger>
-              <TabsTrigger value="physicalReaction ">身体反応</TabsTrigger>
-              <TabsTrigger value="desiredState">望む状態</TabsTrigger>
-            </TabsList>
-            <TabsContent value="emotion">
-              <InputEmotion formData={formData} setFormData={setFormData} />
-            </TabsContent>
-            <TabsContent value="event">
-              <InputEvent formData={formData} setFormData={setFormData} />
-            </TabsContent>
-            <TabsContent value="negativeThoughts">
-              <InputNegativeThoughts formData={formData} setFormData={setFormData} />
-            </TabsContent>
-            <TabsContent value="physicalReaction ">
-              <InputPhysicalReaction formData={formData} setFormData={setFormData} />
-            </TabsContent>
-            <TabsContent value="desiredState">
-              <InputDesiredState formData={formData} setFormData={setFormData} />
-            </TabsContent>
-          </Tabs>
-        </form>
+      <CardContent className="grid h-full grid-cols-2 gap-2">
+        <div className="flex h-full flex-col gap-2">
+          <InputEvent formData={formData} setFormData={setFormData} />
+          <InputEmotion formData={formData} setFormData={setFormData} />
+        </div>
+        <div className="flex h-full flex-col gap-2">
+          <InputNegativeThoughts formData={formData} setFormData={setFormData} />
+          <InputPhysicalReaction formData={formData} setFormData={setFormData} />
+          <InputDesiredState formData={formData} setFormData={setFormData} />
+        </div>
       </CardContent>
-      <CardFooter>
+      <CardFooter className="flex gap-2">
         <Button type="submit" form="negative-note-form">
           保存
+        </Button>
+        <Button type="submit" variant="outline" form="negative-note-form">
+          キャンセル
         </Button>
       </CardFooter>
     </Card>

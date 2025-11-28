@@ -1,5 +1,3 @@
-// todo: fix default formData.negativeThoughts
-
 "use client";
 
 import { Button } from "@/components/ui/button";

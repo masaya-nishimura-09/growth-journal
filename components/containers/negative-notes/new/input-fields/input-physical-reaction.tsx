@@ -1,10 +1,10 @@
-import { IconCircleX } from "@tabler/icons-react";
-import { Dispatch, SetStateAction, useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { NegativeNotesFormData } from "@/types/negative-notes";
+import { IconCircleX } from "@tabler/icons-react";
+import { Dispatch, SetStateAction, useState } from "react";
 
 export default function InputPhysicalReaction({
   formData,
@@ -20,6 +20,7 @@ export default function InputPhysicalReaction({
 
   function handleNewReaction(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
+    if (!reaction.name) return;
     const updatedReactions = [...formData.reactions, reaction];
     setFormData({
       ...formData,

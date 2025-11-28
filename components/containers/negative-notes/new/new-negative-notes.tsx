@@ -2,19 +2,11 @@
 
 "use client";
 
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardAction,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { NegativeNotesFormData } from "@/types/negative-notes";
+import { useState } from "react";
 import InputDesiredState from "./input-fields/input-desired-state";
 import InputEmotion from "./input-fields/input-emotion";
 import InputEvent from "./input-fields/input-event";
@@ -40,9 +32,7 @@ export default function NewNegativeNotes() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>ネガティブノートを追加</CardTitle>
-        <CardDescription>Card Description</CardDescription>
-        <CardAction>Card Action</CardAction>
+        <CardTitle>ネガティブノートを作成</CardTitle>
       </CardHeader>
       <CardContent>
         <form className="flex flex-col gap-6">

@@ -1,4 +1,4 @@
-import NewNegativeNotes from "@/components/containers/negative-notes/new-negative-notes";
+import NewNegativeNotes from "@/components/containers/negative-notes/new/new-negative-notes";
 
 export default function Page() {
   return (

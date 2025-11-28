@@ -1,0 +1,67 @@
+import { Dispatch, SetStateAction } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { NegativeNotesFormData } from "@/types/negative-notes";
+
+export default function InputDesiredState({
+  formData,
+  setFormData,
+}: {
+  formData: NegativeNotesFormData;
+  setFormData: Dispatch<SetStateAction<NegativeNotesFormData>>;
+}) {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>ネガティブだと思った出来事の説明</CardTitle>
+      </CardHeader>
+      <CardContent className="flex flex-col gap-4">
+        <div className="grid gap-2">
+          <Label htmlFor="idealState">本当はどういう状態だと安心できた？</Label>
+          <Input
+            id="idealState"
+            type="text"
+            value={formData.idealState}
+            onChange={(e) =>
+              setFormData({
+                ...formData,
+                idealState: e.target.value,
+              })
+            }
+          />
+        </div>
+
+        <div className="grid gap-2">
+          <Label htmlFor="desiredTreatment">どう扱われたかった？</Label>
+          <Input
+            id="desiredTreatment"
+            type="text"
+            value={formData.desiredTreatment}
+            onChange={(e) =>
+              setFormData({
+                ...formData,
+                desiredTreatment: e.target.value,
+              })
+            }
+          />
+        </div>
+
+        <div className="grid gap-2">
+          <Label htmlFor="desiredFeeling">どういう気持ちでいたい？</Label>
+          <Input
+            id="desiredFeeling"
+            type="text"
+            value={formData.desiredFeeling}
+            onChange={(e) =>
+              setFormData({
+                ...formData,
+                desiredFeeling: e.target.value,
+              })
+            }
+          />
+        </div>
+      </CardContent>
+    </Card>
+  );
+}

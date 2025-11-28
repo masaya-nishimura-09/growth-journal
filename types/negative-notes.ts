@@ -1,11 +1,10 @@
 export interface EmotionLabeling {
   emotion: string;
-  intensity: number;
 }
 
 export interface NegativeEvent {
   description: string;
-  when: string;
+  when: Date;
   where: string;
   withWhom: string;
   userAction: string;
@@ -32,4 +31,24 @@ export interface CBTEntry {
   automaticThought: AutomaticThought;
   physicalReaction: PhysicalReaction;
   desiredState: DesiredState;
+}
+
+export interface NegativeNotesFormData {
+  emotion: string;
+  description: string;
+  when: Date | undefined;
+  where: string;
+  withWhom: string;
+  userAction: string;
+  negativeThoughts: {
+    id: number;
+    name: string;
+  }[];
+  reactions: {
+    id: number;
+    name: string;
+  }[];
+  idealState: string;
+  desiredTreatment: string;
+  desiredFeeling: string;
 }

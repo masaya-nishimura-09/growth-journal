@@ -1,17 +1,19 @@
+import { IconCircleX } from "@tabler/icons-react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { NegativeNotesFormData } from "@/types/negative-notes";
-import { IconCircleX } from "@tabler/icons-react";
-import { Dispatch, SetStateAction, useState } from "react";
+import { NegativeNoteFormData, NegativeNoteFormState } from "@/types/negative-notes";
 
 export default function InputNegativeThoughts({
   formData,
   setFormData,
+  state,
 }: {
-  formData: NegativeNotesFormData;
-  setFormData: Dispatch<SetStateAction<NegativeNotesFormData>>;
+  formData: NegativeNoteFormData;
+  setFormData: Dispatch<SetStateAction<NegativeNoteFormData>>;
+  state: NegativeNoteFormState;
 }) {
   const [negativeThought, setNegativeThought] = useState({
     id: 0,
@@ -43,7 +45,7 @@ export default function InputNegativeThoughts({
   }
 
   return (
-    <Card>
+    <Card className="size-full">
       <CardHeader>
         <CardTitle>頭に浮かんだネガティブワード</CardTitle>
       </CardHeader>
@@ -76,6 +78,11 @@ export default function InputNegativeThoughts({
             </Badge>
           ))}
         </div>
+        {state?.errors?.negativeThoughts?.map((error: string) => (
+          <p className="text-red-500 text-sm" key={error}>
+            {error}
+          </p>
+        ))}
       </CardContent>
     </Card>
   );

@@ -238,9 +238,12 @@ export async function updateNegativeNote(formData: NegativeNote) {
   const validatedData = validatedFields.data;
   const userId = await getUserId();
 
-  const { error: negativeNoteError } = await supabase.from("negative-notes").upsert(
+  console.log(formData);
+
+  const { error: negativeNoteError } = await supabase.from("negative_notes").upsert(
     {
       id: formData.id,
+      user_id: userId,
       emotion: validatedData.emotion,
       description: validatedData.description,
       when: validatedData.when,
@@ -261,6 +264,20 @@ export async function updateNegativeNote(formData: NegativeNote) {
     };
   }
 
+  const { error: deleteNegativeThoughtsError } = await supabase
+    .from("negative_thoughts")
+    .delete()
+    .eq("user_id", userId)
+    .eq("note_id", formData.id);
+
+    if (deleteNegativeThoughtsError) {
+      console.error("Database Error:", deleteNegativeThoughtsError);
+      return {
+        success: false,
+        message: "ネガティブノートの編集に失敗しました。",
+      };
+    }
+
   const newNegativeThoughts = validatedData.negativeThoughts.map((thought) => ({
     user_id: userId,
     note_id: formData.id,
@@ -278,6 +295,20 @@ export async function updateNegativeNote(formData: NegativeNote) {
       message: "ネガティブノートの編集に失敗しました。",
     };
   }
+
+  const { error: deleteReactionsError } = await supabase
+    .from("reactions")
+    .delete()
+    .eq("user_id", userId)
+    .eq("note_id", formData.id);
+
+    if (deleteReactionsError) {
+      console.error("Database Error:", deleteReactionsError);
+      return {
+        success: false,
+        message: "ネガティブノートの編集に失敗しました。",
+      };
+    }
 
   const newReactions = validatedData.reactions.map((reaction) => ({
     user_id: userId,

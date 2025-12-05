@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import NewNegativeNotes from "@/components/containers/negative-notes/new/new-negative-notes";
+import NewNegativeNote from "@/components/containers/negative-notes/new-negative-note";
 
 export const metadata: Metadata = {
   title: "ネガティブノートの作成",
@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <div className="size-full">
-      <NewNegativeNotes />
+      <NewNegativeNote />
     </div>
   );
 }

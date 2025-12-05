@@ -3,10 +3,9 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Toaster, toast } from "sonner";
-import { createNegativeNote } from "@/actions/negative-notes-actions";
+import { updateNegativeNote } from "@/actions/negative-notes-actions";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
-import { formatDateToYYYYMMDD } from "@/lib/date/date";
 import { NegativeNote, NegativeNoteFormState } from "@/types/negative-notes";
 import InputDesiredState from "./input-fields/input-desired-state";
 import InputEmotion from "./input-fields/input-emotion";
@@ -14,33 +13,32 @@ import InputEvent from "./input-fields/input-event";
 import InputNegativeThoughts from "./input-fields/input-negative-thoughts";
 import InputPhysicalReaction from "./input-fields/input-physical-reaction";
 
-export default function NewNegativeNotes() {
-  const today = new Date();
+export default function UpdateNegativeNote({data}: {data: NegativeNote}) {
   const [pending, setPending] = useState<boolean>(false);
   const initialState: NegativeNoteFormState = { success: null, message: null, errors: {} };
   const [state, setState] = useState<NegativeNoteFormState>(initialState);
 
   const [formData, setFormData] = useState<NegativeNote>({
-    id: null,
-    emotion: "Irritation",
-    description: "",
-    when: formatDateToYYYYMMDD(today),
-    where: "",
-    withWhom: "",
-    userAction: "",
-    negativeThoughts: [],
-    reactions: [],
-    idealState: "",
-    desiredTreatment: "",
-    desiredFeeling: "",
-    createdAt: "",
+    id: data.id,
+    emotion: data.emotion,
+    description: data.description,
+    when: data.when,
+    where: data.where,
+    withWhom: data.withWhom,
+    userAction: data.userAction, 
+    negativeThoughts: data.negativeThoughts,
+    reactions: data.reactions,
+    idealState: data.idealState,
+    desiredTreatment: data.desiredTreatment, 
+    desiredFeeling: data.desiredFeeling, 
+    createdAt: data.createdAt,
   });
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setPending(true);
     setState(initialState);
-    const result = await createNegativeNote(formData);
+    const result = await updateNegativeNote(formData);
     if (result.success) {
       location.reload();
     } else {

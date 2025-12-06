@@ -14,7 +14,7 @@ export default function Loading() {
           <span className="font-semibold text-xl">Habit Log</span>
         </div>
         <CardContent className="py-10 flex flex-col w-full text-primary items-center justify-center gap-4">
-          <Spinner className="size-20"/>
+          <Spinner className="size-18"/>
           <span className="text-xl">Loading...</span>
         </CardContent>
       </Card>

@@ -4,7 +4,6 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
   Card,
-  CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
@@ -18,16 +17,15 @@ export const metadata: Metadata = {
 export default function NotFoundPage() {
   return (
     <div className="min-h-screen flex justify-center items-center">
-      <Card className="w-sm md:w-md">
-        <div className="mb-8 flex items-center justify-center gap-2 text-primary">
-          <IconNotebook className="size-10 bg-red" />
-          <span className="font-semibold text-2xl">Habit Log</span>
+      <Card className="w-sm mx-10 md:w-md">
+        <div className="mb-2 flex items-center justify-center gap-2 text-primary">
+          <IconNotebook className="size-6 bg-red" />
+          <span className="font-semibold text-xl">Habit Log</span>
         </div>
-        <CardHeader className="text-center">
+        <CardHeader className="text-center my-4 text-xl">
           <CardTitle>404 - Page Not Found</CardTitle>
           <CardDescription>ご指定のページが見つかりません。</CardDescription>
         </CardHeader>
-        <CardContent></CardContent>
         <CardFooter className="flex justify-center items-center">
           <Button>
             <Link href="/dashboard">トップページへ戻る</Link>

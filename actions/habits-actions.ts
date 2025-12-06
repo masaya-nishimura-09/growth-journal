@@ -60,6 +60,52 @@ export async function fetchHabits(type: string) {
   return data || [];
 }
 
+export async function fetchLatestGoodHabits() {
+  const userId = await getUserId();
+
+  const { data, error} = await supabase
+    .from("habits")
+    .select()
+    .eq("user_id", userId)
+    .eq("type", "good")
+    .order("restart", { ascending: false })
+    .limit(5);
+
+  if (error) {
+    console.error("Database Error:", error);
+    return [];
+  }
+
+  if (!data || data.length < 1) {
+    return [];
+  }
+
+  return data || [];
+}
+
+export async function fetchLatestBadHabits() {
+  const userId = await getUserId();
+
+  const { data, error } = await supabase
+    .from("habits")
+    .select()
+    .eq("user_id", userId)
+    .eq("type", "bad")
+    .order("restart", { ascending: false })
+    .limit(5);
+
+  if (error) {
+    console.error("Database Error:", error);
+    return [];
+  }
+
+  if (!data || data.length < 1) {
+    return [];
+  }
+
+  return data || [];
+}
+
 export async function restartHabit(habitId: number, date: string) {
   const userId = await getUserId();
 

@@ -131,3 +131,43 @@ export async function deleteHabit(habitId: number) {
     throw new Error("習慣の削除に失敗しました。");
   }
 }
+
+export async function getHabitsCount() {
+  const userId = await getUserId();
+
+  const { count: totalCount, error: totalError } = await supabase
+    .from("habits")
+    .select("*", { count: "exact", head: true })
+    .eq("user_id", userId);
+
+  if (totalError) {
+    console.error("Database Error:", totalError);
+    return { good: 0, bad: 0, total: 0 };
+  }
+
+  const { count: goodCount, error: goodError } = await supabase
+    .from("habits")
+    .select("*", { count: "exact", head: true })
+    .eq("user_id", userId)
+    .eq("type", "good");
+
+  if (goodError) {
+    console.error("Database Error:", goodError);
+  }
+
+  const { count: badCount, error: badError } = await supabase
+    .from("habits")
+    .select("*", { count: "exact", head: true })
+    .eq("user_id", userId)
+    .eq("type", "bad");
+
+  if (badError) {
+    console.error("Database Error:", badError);
+  }
+
+  return {
+    good: goodCount || 0,
+    bad: badCount || 0,
+    total: totalCount || 0,
+  };
+}

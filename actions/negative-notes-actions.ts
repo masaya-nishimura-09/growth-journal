@@ -408,3 +408,19 @@ export async function deleteNegativeNote(negativeNoteId: number) {
     throw new Error("ネガティブノートの削除に失敗しました。");
   }
 }
+
+export async function getNegativeNotesCount() {
+  const userId = await getUserId();
+
+  const { count, error } = await supabase
+    .from("negative_notes")
+    .select("*", { count: "exact", head: true })
+    .eq("user_id", userId);
+
+  if (error) {
+    console.error("Database Error:", error);
+    return 0;
+  }
+
+  return count || 0;
+}

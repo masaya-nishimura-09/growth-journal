@@ -1,12 +1,7 @@
 "use client";
 
-import {
-  IconCreditCard,
-  IconDotsVertical,
-  IconLogout,
-  IconNotification,
-  IconUserCircle,
-} from "@tabler/icons-react";
+import { IconDotsVertical, IconLogout, IconUserCircle } from "@tabler/icons-react";
+import Link from "next/link";
 import { logout } from "@/actions/user-actions";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -78,17 +73,13 @@ export function NavUser({
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <IconUserCircle />
-                アカウント
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <IconCreditCard />
-                支払い方法
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <IconNotification />
-                通知
+              <DropdownMenuItem className="p-0">
+                <Button type="button" variant="ghost" className="w-full justify-start p-2">
+                  <Link href="dashboard/account" className="flex items-center gap-2">
+                    <IconUserCircle />
+                    アカウント
+                  </Link>
+                </Button>
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />

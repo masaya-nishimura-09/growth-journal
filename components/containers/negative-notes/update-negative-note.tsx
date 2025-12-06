@@ -13,7 +13,7 @@ import InputEvent from "./input-fields/input-event";
 import InputNegativeThoughts from "./input-fields/input-negative-thoughts";
 import InputPhysicalReaction from "./input-fields/input-physical-reaction";
 
-export default function UpdateNegativeNote({data}: {data: NegativeNote}) {
+export default function UpdateNegativeNote({ data }: { data: NegativeNote }) {
   const [pending, setPending] = useState<boolean>(false);
   const initialState: NegativeNoteFormState = { success: null, message: null, errors: {} };
   const [state, setState] = useState<NegativeNoteFormState>(initialState);
@@ -25,12 +25,12 @@ export default function UpdateNegativeNote({data}: {data: NegativeNote}) {
     when: data.when,
     where: data.where,
     withWhom: data.withWhom,
-    userAction: data.userAction, 
+    userAction: data.userAction,
     negativeThoughts: data.negativeThoughts,
     reactions: data.reactions,
     idealState: data.idealState,
-    desiredTreatment: data.desiredTreatment, 
-    desiredFeeling: data.desiredFeeling, 
+    desiredTreatment: data.desiredTreatment,
+    desiredFeeling: data.desiredFeeling,
     createdAt: data.createdAt,
   });
 

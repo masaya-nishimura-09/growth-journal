@@ -3,7 +3,7 @@
 import { useState } from "react";
 import DiaryArchiveSearchDialog from "@/components/containers/diary-archive/diary-archive-search-dialog";
 import DiaryArchiveTable from "@/components/containers/diary-archive/diary-archive-table";
-import { Card, CardTitle, CardAction, CardContent, CardHeader } from "@/components/ui/card";
+import { Card, CardAction, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useDiaryArchiveTable } from "@/hooks/use-diary-archive-table";
 import { Diary } from "@/types/diaries";
 

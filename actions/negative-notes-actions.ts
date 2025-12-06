@@ -114,14 +114,13 @@ export async function fetchNegativeNote(id: number) {
     .eq("id", id)
     .single();
 
-
   if (error) {
     console.error("Database Error:", error);
     return {
       success: false,
       message: "ネガティブノートの取得に失敗しました。",
     };
-  };
+  }
 
   if (!data) {
     return {
@@ -157,7 +156,6 @@ export async function fetchNegativeNote(id: number) {
     };
   }
 }
-
 
 export async function fetchNegativeNotes() {
   const userId = await getUserId();
@@ -253,8 +251,8 @@ export async function updateNegativeNote(formData: NegativeNote) {
       ideal_state: validatedData.idealState,
       desired_treatment: validatedData.desiredTreatment,
       desired_feeling: validatedData.desiredFeeling,
-   },
-   { onConflict: "id" },
+    },
+    { onConflict: "id" },
   );
   if (negativeNoteError) {
     console.error("Database error:", negativeNoteError.message);
@@ -270,13 +268,13 @@ export async function updateNegativeNote(formData: NegativeNote) {
     .eq("user_id", userId)
     .eq("note_id", formData.id);
 
-    if (deleteNegativeThoughtsError) {
-      console.error("Database Error:", deleteNegativeThoughtsError);
-      return {
-        success: false,
-        message: "ネガティブノートの編集に失敗しました。",
-      };
-    }
+  if (deleteNegativeThoughtsError) {
+    console.error("Database Error:", deleteNegativeThoughtsError);
+    return {
+      success: false,
+      message: "ネガティブノートの編集に失敗しました。",
+    };
+  }
 
   const newNegativeThoughts = validatedData.negativeThoughts.map((thought) => ({
     user_id: userId,
@@ -302,13 +300,13 @@ export async function updateNegativeNote(formData: NegativeNote) {
     .eq("user_id", userId)
     .eq("note_id", formData.id);
 
-    if (deleteReactionsError) {
-      console.error("Database Error:", deleteReactionsError);
-      return {
-        success: false,
-        message: "ネガティブノートの編集に失敗しました。",
-      };
-    }
+  if (deleteReactionsError) {
+    console.error("Database Error:", deleteReactionsError);
+    return {
+      success: false,
+      message: "ネガティブノートの編集に失敗しました。",
+    };
+  }
 
   const newReactions = validatedData.reactions.map((reaction) => ({
     user_id: userId,
@@ -326,7 +324,7 @@ export async function updateNegativeNote(formData: NegativeNote) {
     };
   }
 
-   return { success: true };
+  return { success: true };
 }
 
 export async function deleteNegativeNote(negativeNoteId: number) {

@@ -64,91 +64,89 @@ export default function DiaryArchiveSearchDialog({
 
   return (
     <Button className="size-full">
-        <Dialog>
-          <DialogTrigger>
-            詳細検索
-          </DialogTrigger>
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>詳細検索</DialogTitle>
-            </DialogHeader>
-            <div className="flex flex-col gap-6 py-4">
-              <div className="grid gap-2">
-                <Label>期間</Label>
-                <Dialog>
-                  <DialogTrigger>
-                    <Button variant="outline" className="mr-auto block">
+      <Dialog>
+        <DialogTrigger>詳細検索</DialogTrigger>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>詳細検索</DialogTitle>
+          </DialogHeader>
+          <div className="flex flex-col gap-6 py-4">
+            <div className="grid gap-2">
+              <Label>期間</Label>
+              <Dialog>
+                <DialogTrigger>
+                  <Button variant="outline" className="mr-auto block">
+                    {getDateWithDayOfWeek(dateRangeStr?.from)}
+                    {` - `}
+                    {getDateWithDayOfWeek(dateRangeStr?.to)}
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="h-[450px] w-[350px] overflow-scroll sm:max-w-[550px] md:w-[550px]">
+                  <DialogHeader>
+                    <DialogTitle>日記の期間</DialogTitle>
+                    <DialogDescription>
                       {getDateWithDayOfWeek(dateRangeStr?.from)}
                       {` - `}
                       {getDateWithDayOfWeek(dateRangeStr?.to)}
-                    </Button>
-                  </DialogTrigger>
-                  <DialogContent className="h-[450px] w-[350px] overflow-scroll sm:max-w-[550px] md:w-[550px]">
-                    <DialogHeader>
-                      <DialogTitle>日記の期間</DialogTitle>
-                      <DialogDescription>
-                        {getDateWithDayOfWeek(dateRangeStr?.from)}
-                        {` - `}
-                        {getDateWithDayOfWeek(dateRangeStr?.to)}
-                      </DialogDescription>
-                    </DialogHeader>
-                    <div className="flex w-full justify-center">
-                      <Calendar
-                        mode="range"
-                        defaultMonth={dateRange?.from}
-                        selected={dateRange}
-                        onSelect={(date) => {
-                          handleFilterByRange(date);
-                        }}
-                        numberOfMonths={2}
-                        locale={ja}
-                        className="rounded-md border"
-                      />
-                    </div>
-                  </DialogContent>
-                </Dialog>
-              </div>
-              <div className="grid gap-2">
-                <Label>項目</Label>
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="outline" className="w-[180px] justify-between">
-                      {selectedColumn}
-                      <ChevronDown />
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end">
-                    <DropdownMenuRadioGroup
-                      value={
-                        table.getAllColumns().find((col) => col.getIsVisible() && col.id !== "date")
-                          ?.id ?? ""
-                      }
-                      onValueChange={(value) => {
-                        table.getAllColumns().forEach((col) => {
-                          if (col.id === "date") {
-                            col.toggleVisibility(true);
-                          } else {
-                            col.toggleVisibility(col.id === value);
-                          }
-                        });
-                        setSelectedColumn(diaryColumns[value]);
+                    </DialogDescription>
+                  </DialogHeader>
+                  <div className="flex w-full justify-center">
+                    <Calendar
+                      mode="range"
+                      defaultMonth={dateRange?.from}
+                      selected={dateRange}
+                      onSelect={(date) => {
+                        handleFilterByRange(date);
                       }}
-                    >
-                      {table
-                        .getAllColumns()
-                        .filter((column) => column.getCanHide() && column.id !== "date")
-                        .map((column) => (
-                          <DropdownMenuRadioItem key={column.id} value={column.id}>
-                            {diaryColumns[column.id]}
-                          </DropdownMenuRadioItem>
-                        ))}
-                    </DropdownMenuRadioGroup>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </div>
+                      numberOfMonths={2}
+                      locale={ja}
+                      className="rounded-md border"
+                    />
+                  </div>
+                </DialogContent>
+              </Dialog>
             </div>
-          </DialogContent>
-        </Dialog>
+            <div className="grid gap-2">
+              <Label>項目</Label>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="outline" className="w-[180px] justify-between">
+                    {selectedColumn}
+                    <ChevronDown />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuRadioGroup
+                    value={
+                      table.getAllColumns().find((col) => col.getIsVisible() && col.id !== "date")
+                        ?.id ?? ""
+                    }
+                    onValueChange={(value) => {
+                      table.getAllColumns().forEach((col) => {
+                        if (col.id === "date") {
+                          col.toggleVisibility(true);
+                        } else {
+                          col.toggleVisibility(col.id === value);
+                        }
+                      });
+                      setSelectedColumn(diaryColumns[value]);
+                    }}
+                  >
+                    {table
+                      .getAllColumns()
+                      .filter((column) => column.getCanHide() && column.id !== "date")
+                      .map((column) => (
+                        <DropdownMenuRadioItem key={column.id} value={column.id}>
+                          {diaryColumns[column.id]}
+                        </DropdownMenuRadioItem>
+                      ))}
+                  </DropdownMenuRadioGroup>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </Button>
   );
 }

@@ -21,6 +21,12 @@ export async function getUserId() {
   return userId;
 }
 
+export async function getUsername() {
+  const session = await auth();
+  const username: string = session?.user?.name as string;
+  return username;
+}
+
 export async function register(_prevState: RegisterState | undefined, formData: FormData) {
   const validatedFields = RegisterFormSchema.safeParse({
     name: formData.get("name"),

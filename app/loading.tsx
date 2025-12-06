@@ -1,10 +1,5 @@
 import { IconNotebook } from "@tabler/icons-react";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardContent,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Spinner } from "@/components/ui/spinner";
 
 export default function Loading() {
@@ -18,7 +13,7 @@ export default function Loading() {
           </CardTitle>
         </CardHeader>
         <CardContent className="py-4 flex flex-col w-full text-primary items-center justify-center gap-4">
-          <Spinner className="size-16"/>
+          <Spinner className="size-16" />
           <span className="text-xl">Loading...</span>
         </CardContent>
       </Card>

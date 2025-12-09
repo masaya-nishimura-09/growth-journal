@@ -1,6 +1,5 @@
 "use client";
 
-import { IconNotebook } from "@tabler/icons-react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useActionState } from "react";
@@ -18,6 +17,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Spinner } from "@/components/ui/spinner";
+import Logo from "@/lib/logo";
 import { LoginState } from "@/types/user";
 
 export default function LoginForm() {
@@ -28,9 +28,8 @@ export default function LoginForm() {
 
   return (
     <Card className="mx-4 w-sm md:w-md">
-      <div className="mb-8 flex items-center justify-center gap-2 text-primary">
-        <IconNotebook className="size-10 bg-red" />
-        <span className="font-semibold text-2xl">Growth Journal</span>
+      <div className="my-4 flex items-center justify-center gap-2 text-primary">
+        <Logo size={2} color={"blue"} />
       </div>
       <CardHeader>
         <CardTitle>ログイン</CardTitle>

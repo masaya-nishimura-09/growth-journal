@@ -1,0 +1,18 @@
+
+Hope you enjoy your new logo, here are the people that
+made your beautiful logo happen :)
+font name: Aileron-Heavy
+font link: http://dotcolon.net/font/aileron/
+font author: dot colon
+font author site: http://dotcolon.net/
+
+
+icon designer: Ciro Esposito
+icon designer link: /creator/cirox/
+        
+
+fontColor: {"hex":"#ffffff"}
+bgColor: {"hex":"#133e87"}
+iconColor: {"hex":"#ffffff"}
+
+      

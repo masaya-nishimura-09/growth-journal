@@ -1,15 +1,7 @@
 "use client";
 
-import { IconNotebook } from "@tabler/icons-react";
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarHeader,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-} from "@/components/ui/sidebar";
+import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader } from "@/components/ui/sidebar";
+import Logo from "@/lib/logo";
 import { items } from "@/lib/sidebar/menu-items";
 import { NavMain } from "./nav-main";
 import { NavSecondary } from "./nav-secondary";
@@ -30,16 +22,9 @@ export function AppSidebar({ ...props }: AppSidebarProps) {
   return (
     <Sidebar collapsible="offcanvas" {...props}>
       <SidebarHeader>
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton asChild className="data-[slot=sidebar-menu-button]:!p-1.5">
-              <a href="/dashboard">
-                <IconNotebook className="size-5" />
-                <span className="font-semibold text-base">Growth Journal</span>
-              </a>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-        </SidebarMenu>
+        <a href="/dashboard" className="p-2">
+          <Logo size={2} color="white" />
+        </a>
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={items.navMain} />
